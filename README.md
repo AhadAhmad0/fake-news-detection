@@ -1,43 +1,69 @@
-Fake News Detection Web App:
-This project is a Machine Learning-based Fake News Detection system built using Natural Language Processing (NLP) and deployed as a Flask web application. It allows users to input a news article or text and predicts whether the news is Real or Fake.
+# Fake News Detection Web App
 
-🚀 Project Overview:
-The model is trained using a dataset of real and fake news articles. Text data is preprocessed using cleaning techniques and transformed into numerical features using TF-IDF Vectorization. A Logistic Regression model is then trained to classify the news.
-The application is deployed using Flask and hosted on Render, providing a simple and interactive user interface.
+A Flask web app that classifies a news article as Real or Fake. You paste in the text, and a TF-IDF and Logistic Regression model gives its answer on the page.
 
-🛠️ Tech Stack:
-1.Python
-2.Flask
-3.Pandas
-4.Scikit-learn
-5.NumPy
-6.HTML & CSS
+**Live demo:** https://fake-news-detection-project-ahad5.onrender.com
 
-⚙️ How It Works:
-1.User inputs news text through the web interface
-2.Text is preprocessed (cleaning, removing noise, etc.)
-3.TF-IDF converts text into numerical features
-4.Logistic Regression predicts whether news is Fake or Real
-5.Result is displayed on the web page
+The app runs on Render. If it has been idle, the first load may take a while to start.
 
-📁 Project Structure:
-1.app.py → Flask backend & ML logic
-2.templates/index.html → Frontend UI
-3.Fake_small.csv, True_small.csv → Reduced dataset
-4.requirements.txt → Dependencies
-5.runtime.txt → Python version
+---
 
-⚠️ Dataset Note:
-The original dataset is large and exceeds GitHub file size limits. Therefore, a reduced (sampled) version of the dataset is used in this project (Fake_small.csv and True_small.csv).
-This approach was chosen to:
-1.Ensure smooth deployment on Render
-2.Avoid GitHub upload limitations
-3.Maintain reasonable model performance
-4.Enable faster training during app startup
+## How it works
 
-🔗 *Live Demo:* [Fake News Detection Web App](https://fake-news-detection-project-ahad5.onrender.com)
+1. You paste a news article into the web page.
+2. The text is cleaned: noise and extra characters are removed.
+3. TF-IDF turns the text into numbers.
+4. A Logistic Regression model predicts Fake or Real.
+5. The result is shown on the page.
 
-Conclusion:
-This project demonstrates an end-to-end ML workflow including data preprocessing, model training, web integration, and deployment. It is designed to be lightweight, practical, and suitable for real-world applications.
+The model is trained from the CSV files when the app starts. It is not saved as a separate file.
 
+## Limitations
 
+- The model learns patterns in how real and fake articles are written. It does not check whether the claims are true.
+- It is trained on one dataset, so it may do badly on news from other topics, countries or years.
+- On datasets like this, real and fake articles often differ in simple ways, such as the name of the source or the formatting. A high score can come from those clues and not from understanding the news.
+- Training at startup makes the app slower to start than loading a saved model.
+
+## Dataset
+
+The project uses a dataset of real and fake news articles. The full dataset is large, so the repo uses a sampled version: `Fake_small.csv` and `True_small.csv`. This keeps the app light on Render and the training at startup short. The smaller sample may lower accuracy compared with the full dataset.
+
+## Tech stack
+
+- Python
+- Flask
+- Pandas, NumPy
+- scikit-learn (TF-IDF, Logistic Regression)
+- HTML and CSS
+- Render for hosting
+
+## Project structure
+
+```
+├── app.py                  # Flask backend and ML code
+├── templates/
+│   └── index.html          # Web page
+├── Fake_small.csv          # Sampled fake news data
+├── True_small.csv          # Sampled real news data
+├── requirements.txt        # Dependencies
+└── runtime.txt             # Python version for Render
+```
+
+## Run locally
+
+```bash
+git clone https://github.com/AhadAhmad0/fake-news-detection
+cd fake-news-detection
+
+pip install -r requirements.txt
+python app.py
+```
+
+Then open the local address that Flask prints in the terminal.
+
+## Author
+
+Ahad Ahmad
+- GitHub: [@AhadAhmad0](https://github.com/AhadAhmad0)
+- LinkedIn: [linkedin.com/in/ahadahmad7](https://linkedin.com/in/ahadahmad7/)
